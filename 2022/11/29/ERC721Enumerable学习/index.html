@@ -1,24 +1,21 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"mouke180.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yuki">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="今天学习ERC721扩展库中的ERC721Enumerable.sol ERC721Enumerable.sol代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ERC721Enumerable">
@@ -30,263 +27,595 @@
 <meta property="article:modified_time" content="2022-11-29T14:04:59.902Z">
 <meta property="article:author" content="Yuki">
 <meta property="article:tag" content="ERC721Enumerable学习记录">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>ERC721Enumerable - Yuki&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://mouke180.github.io/2022/11/29/ERC721Enumerable%E5%AD%A6%E4%B9%A0/">
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://mouke180.github.io/2022/11/29/ERC721Enumerable%E5%AD%A6%E4%B9%A0/","path":"2022/11/29/ERC721Enumerable学习/","title":"ERC721Enumerable"}</script>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ERC721Enumerable | Yuki's Blog</title>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"mouke180.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
 
-  <script async defer data-website-id="" src=""></script>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
 
-  <script defer data-domain="" src=""></script>
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
+  <header>
+    
 
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">Yuki's Blog</p>
-      <i class="logo-line"></i>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">Love zhu</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section">分类</a></li><li class="menu-item menu-item-catalogue"><a href="/catalogues/" rel="section">目录</a></li>
-  </ul>
 </nav>
 
-
-
-
-</header>
-        
   
-  <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ERC721Enumerable-sol%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">ERC721Enumerable.sol代码：</span></a></li></ol></div>
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ERC721Enumerable"></span>
+          
         </div>
-        <!--/noindex-->
 
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Yuki</p>
-  <div class="site-description" itemprop="description">Happy Everyday</div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">6</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
-      </div>
-  </nav>
-</div>
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-29 21:07" pubdate>
+          2022年11月29日 晚上
+        </time>
+      </span>
+    
+  </div>
 
-        </div>
-      </div>
-    </div>
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.6k 字
+        
+      </span>
+    
 
     
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mouke180.github.io/2022/11/29/ERC721Enumerable%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yuki">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuki's Blog">
-      <meta itemprop="description" content="Happy Everyday">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="ERC721Enumerable | Yuki's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          ERC721Enumerable
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          56 分钟
+        
       </span>
-      <span class="post-meta-item-text">发表于</span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
       
 
-      <time title="创建时间：2022-11-29 21:07:08 / 修改时间：22:04:59" itemprop="dateCreated datePublished" datetime="2022-11-29T21:07:08+08:00">2022-11-29</time>
-    </span>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
 
-  
-</div>
+    </div>
 
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p>今天学习ERC721扩展库中的ERC721Enumerable.sol</p>
-<h2 id="ERC721Enumerable-sol代码："><a href="#ERC721Enumerable-sol代码：" class="headerlink" title="ERC721Enumerable.sol代码："></a>ERC721Enumerable.sol代码：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: MIT</span></span><br><span class="line"><span class="comment">// OpenZeppelin Contracts (last updated v4.8.0) (token/ERC721/extensions/ERC721Enumerable.sol)</span></span><br><span class="line"></span><br><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;../ERC721.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./IERC721Enumerable.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@dev</span> This implements an optional extension of &#123;ERC721&#125; defined in the EIP that adds</span></span><br><span class="line"><span class="comment"> * enumerability of all the token ids in the contract as well as all token ids owned by each</span></span><br><span class="line"><span class="comment"> * account.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">abstract contract <span class="title class_">ERC721Enumerable</span> is <span class="title class_">ERC721</span>, <span class="title class_">IERC721Enumerable</span> &#123;</span><br><span class="line">    <span class="comment">// Mapping from owner to list of owned token IDs</span></span><br><span class="line">    <span class="title function_">mapping</span>(<span class="function"><span class="params">address</span> =&gt;</span> <span class="title function_">mapping</span>(<span class="function"><span class="params">uint256</span> =&gt;</span> uint256)) private _ownedTokens;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Mapping from token ID to index of the owner tokens list</span></span><br><span class="line">    <span class="title function_">mapping</span>(<span class="function"><span class="params">uint256</span> =&gt;</span> uint256) private _ownedTokensIndex;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Array with all token ids, used for enumeration</span></span><br><span class="line">    uint256[] private _allTokens;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Mapping from token id to position in the allTokens array</span></span><br><span class="line">    <span class="title function_">mapping</span>(<span class="function"><span class="params">uint256</span> =&gt;</span> uint256) private _allTokensIndex;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dev</span> See &#123;IERC165-supportsInterface&#125;.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">supportsInterface</span>(<span class="params">bytes4 interfaceId</span>) public view virtual <span class="title function_">override</span>(<span class="title class_">IERC165</span>, <span class="title class_">ERC721</span>) returns (bool) &#123;</span><br><span class="line">        <span class="keyword">return</span> interfaceId == <span class="title function_">type</span>(<span class="title class_">IERC721Enumerable</span>).<span class="property">interfaceId</span> || <span class="variable language_">super</span>.<span class="title function_">supportsInterface</span>(interfaceId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dev</span> See &#123;IERC721Enumerable-tokenOfOwnerByIndex&#125;.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">tokenOfOwnerByIndex</span>(<span class="params">address owner, uint256 index</span>) public view virtual override returns (uint256) &#123;</span><br><span class="line">        <span class="built_in">require</span>(index &lt; <span class="title class_">ERC721</span>.<span class="title function_">balanceOf</span>(owner), <span class="string">&quot;ERC721Enumerable: owner index out of bounds&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> _ownedTokens[owner][index];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dev</span> See &#123;IERC721Enumerable-totalSupply&#125;.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">totalSupply</span>(<span class="params"></span>) public view virtual override returns (uint256) &#123;</span><br><span class="line">        <span class="keyword">return</span> _allTokens.<span class="property">length</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dev</span> See &#123;IERC721Enumerable-tokenByIndex&#125;.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">tokenByIndex</span>(<span class="params">uint256 index</span>) public view virtual override returns (uint256) &#123;</span><br><span class="line">        <span class="built_in">require</span>(index &lt; <span class="title class_">ERC721Enumerable</span>.<span class="title function_">totalSupply</span>(), <span class="string">&quot;ERC721Enumerable: global index out of bounds&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> _allTokens[index];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dev</span> See &#123;ERC721-_beforeTokenTransfer&#125;.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">_beforeTokenTransfer</span>(<span class="params"></span></span><br><span class="line"><span class="params">        address <span class="keyword">from</span>,</span></span><br><span class="line"><span class="params">        address to,</span></span><br><span class="line"><span class="params">        uint256 firstTokenId,</span></span><br><span class="line"><span class="params">        uint256 batchSize</span></span><br><span class="line"><span class="params">    </span>) internal virtual override &#123;</span><br><span class="line">        <span class="variable language_">super</span>.<span class="title function_">_beforeTokenTransfer</span>(<span class="keyword">from</span>, to, firstTokenId, batchSize);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (batchSize &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// Will only trigger during construction. Batch transferring (minting) is not available afterwards.</span></span><br><span class="line">            <span class="title function_">revert</span>(<span class="string">&quot;ERC721Enumerable: consecutive transfers not supported&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        uint256 tokenId = firstTokenId;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">from</span> == <span class="title function_">address</span>(<span class="number">0</span>)) &#123;</span><br><span class="line">            <span class="title function_">_addTokenToAllTokensEnumeration</span>(tokenId);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">from</span> != to) &#123;</span><br><span class="line">            <span class="title function_">_removeTokenFromOwnerEnumeration</span>(<span class="keyword">from</span>, tokenId);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (to == <span class="title function_">address</span>(<span class="number">0</span>)) &#123;</span><br><span class="line">            <span class="title function_">_removeTokenFromAllTokensEnumeration</span>(tokenId);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (to != <span class="keyword">from</span>) &#123;</span><br><span class="line">            <span class="title function_">_addTokenToOwnerEnumeration</span>(to, tokenId);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dev</span> Private function to add a token to this extension&#x27;s ownership-tracking data structures.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> to address representing the new owner of the given token ID</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tokenId uint256 ID of the token to be added to the tokens list of the given address</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">_addTokenToOwnerEnumeration</span>(<span class="params">address to, uint256 tokenId</span>) private &#123;</span><br><span class="line">        uint256 length = <span class="title class_">ERC721</span>.<span class="title function_">balanceOf</span>(to);</span><br><span class="line">        _ownedTokens[to][length] = tokenId;</span><br><span class="line">        _ownedTokensIndex[tokenId] = length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dev</span> Private function to add a token to this extension&#x27;s token tracking data structures.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tokenId uint256 ID of the token to be added to the tokens list</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">_addTokenToAllTokensEnumeration</span>(<span class="params">uint256 tokenId</span>) private &#123;</span><br><span class="line">        _allTokensIndex[tokenId] = _allTokens.<span class="property">length</span>;</span><br><span class="line">        _allTokens.<span class="title function_">push</span>(tokenId);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dev</span> Private function to remove a token from this extension&#x27;s ownership-tracking data structures. Note that</span></span><br><span class="line"><span class="comment">     * while the token is not assigned a new owner, the `_ownedTokensIndex` mapping is _not_ updated: this allows for</span></span><br><span class="line"><span class="comment">     * gas optimizations e.g. when performing a transfer operation (avoiding double writes).</span></span><br><span class="line"><span class="comment">     * This has O(1) time complexity, but alters the order of the _ownedTokens array.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> from address representing the previous owner of the given token ID</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tokenId uint256 ID of the token to be removed from the tokens list of the given address</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">_removeTokenFromOwnerEnumeration</span>(<span class="params">address <span class="keyword">from</span>, uint256 tokenId</span>) private &#123;</span><br><span class="line">        <span class="comment">// To prevent a gap in from&#x27;s tokens array, we store the last token in the index of the token to delete, and</span></span><br><span class="line">        <span class="comment">// then delete the last slot (swap and pop).</span></span><br><span class="line"></span><br><span class="line">        uint256 lastTokenIndex = <span class="title class_">ERC721</span>.<span class="title function_">balanceOf</span>(<span class="keyword">from</span>) - <span class="number">1</span>;</span><br><span class="line">        uint256 tokenIndex = _ownedTokensIndex[tokenId];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// When the token to delete is the last token, the swap operation is unnecessary</span></span><br><span class="line">        <span class="keyword">if</span> (tokenIndex != lastTokenIndex) &#123;</span><br><span class="line">            uint256 lastTokenId = _ownedTokens[<span class="keyword">from</span>][lastTokenIndex];</span><br><span class="line"></span><br><span class="line">            _ownedTokens[<span class="keyword">from</span>][tokenIndex] = lastTokenId; <span class="comment">// Move the last token to the slot of the to-delete token</span></span><br><span class="line">            _ownedTokensIndex[lastTokenId] = tokenIndex; <span class="comment">// Update the moved token&#x27;s index</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This also deletes the contents at the last position of the array</span></span><br><span class="line">        <span class="keyword">delete</span> _ownedTokensIndex[tokenId];</span><br><span class="line">        <span class="keyword">delete</span> _ownedTokens[<span class="keyword">from</span>][lastTokenIndex];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@dev</span> Private function to remove a token from this extension&#x27;s token tracking data structures.</span></span><br><span class="line"><span class="comment">     * This has O(1) time complexity, but alters the order of the _allTokens array.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> tokenId uint256 ID of the token to be removed from the tokens list</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">_removeTokenFromAllTokensEnumeration</span>(<span class="params">uint256 tokenId</span>) private &#123;</span><br><span class="line">        <span class="comment">// To prevent a gap in the tokens array, we store the last token in the index of the token to delete, and</span></span><br><span class="line">        <span class="comment">// then delete the last slot (swap and pop).</span></span><br><span class="line"></span><br><span class="line">        uint256 lastTokenIndex = _allTokens.<span class="property">length</span> - <span class="number">1</span>;</span><br><span class="line">        uint256 tokenIndex = _allTokensIndex[tokenId];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// When the token to delete is the last token, the swap operation is unnecessary. However, since this occurs so</span></span><br><span class="line">        <span class="comment">// rarely (when the last minted token is burnt) that we still do the swap here to avoid the gas cost of adding</span></span><br><span class="line">        <span class="comment">// an &#x27;if&#x27; statement (like in _removeTokenFromOwnerEnumeration)</span></span><br><span class="line">        uint256 lastTokenId = _allTokens[lastTokenIndex];</span><br><span class="line"></span><br><span class="line">        _allTokens[tokenIndex] = lastTokenId; <span class="comment">// Move the last token to the slot of the to-delete token</span></span><br><span class="line">        _allTokensIndex[lastTokenId] = tokenIndex; <span class="comment">// Update the moved token&#x27;s index</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// This also deletes the contents at the last position of the array</span></span><br><span class="line">        <span class="keyword">delete</span> _allTokensIndex[tokenId];</span><br><span class="line">        _allTokens.<span class="title function_">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ERC721Enumerable</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>今天学习ERC721扩展库中的ERC721Enumerable.sol</p>
+<h2 id="ERC721Enumerable-sol代码："><a href="#ERC721Enumerable-sol代码：" class="headerlink" title="ERC721Enumerable.sol代码："></a>ERC721Enumerable.sol代码：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span><br><span class="hljs-comment">// OpenZeppelin Contracts (last updated v4.8.0) (token/ERC721/extensions/ERC721Enumerable.sol)</span><br><br>pragma solidity ^<span class="hljs-number">0.8</span><span class="hljs-number">.0</span>;<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;../ERC721.sol&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./IERC721Enumerable.sol&quot;</span>;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@dev</span> This implements an optional extension of &#123;ERC721&#125; defined in the EIP that adds</span><br><span class="hljs-comment"> * enumerability of all the token ids in the contract as well as all token ids owned by each</span><br><span class="hljs-comment"> * account.</span><br><span class="hljs-comment"> */</span><br>abstract contract <span class="hljs-title class_">ERC721Enumerable</span> is <span class="hljs-title class_">ERC721</span>, <span class="hljs-title class_">IERC721Enumerable</span> &#123;<br>    <span class="hljs-comment">// Mapping from owner to list of owned token IDs</span><br>    <span class="hljs-title function_">mapping</span>(<span class="hljs-function"><span class="hljs-params">address</span> =&gt;</span> <span class="hljs-title function_">mapping</span>(<span class="hljs-function"><span class="hljs-params">uint256</span> =&gt;</span> uint256)) private _ownedTokens;<br><br>    <span class="hljs-comment">// Mapping from token ID to index of the owner tokens list</span><br>    <span class="hljs-title function_">mapping</span>(<span class="hljs-function"><span class="hljs-params">uint256</span> =&gt;</span> uint256) private _ownedTokensIndex;<br><br>    <span class="hljs-comment">// Array with all token ids, used for enumeration</span><br>    uint256[] private _allTokens;<br><br>    <span class="hljs-comment">// Mapping from token id to position in the allTokens array</span><br>    <span class="hljs-title function_">mapping</span>(<span class="hljs-function"><span class="hljs-params">uint256</span> =&gt;</span> uint256) private _allTokensIndex;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@dev</span> See &#123;IERC165-supportsInterface&#125;.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">supportsInterface</span>(<span class="hljs-params">bytes4 interfaceId</span>) public view virtual <span class="hljs-title function_">override</span>(<span class="hljs-title class_">IERC165</span>, <span class="hljs-title class_">ERC721</span>) returns (bool) &#123;<br>        <span class="hljs-keyword">return</span> interfaceId == <span class="hljs-title function_">type</span>(<span class="hljs-title class_">IERC721Enumerable</span>).<span class="hljs-property">interfaceId</span> || <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">supportsInterface</span>(interfaceId);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@dev</span> See &#123;IERC721Enumerable-tokenOfOwnerByIndex&#125;.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">tokenOfOwnerByIndex</span>(<span class="hljs-params">address owner, uint256 index</span>) public view virtual override returns (uint256) &#123;<br>        <span class="hljs-built_in">require</span>(index &lt; <span class="hljs-title class_">ERC721</span>.<span class="hljs-title function_">balanceOf</span>(owner), <span class="hljs-string">&quot;ERC721Enumerable: owner index out of bounds&quot;</span>);<br>        <span class="hljs-keyword">return</span> _ownedTokens[owner][index];<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@dev</span> See &#123;IERC721Enumerable-totalSupply&#125;.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">totalSupply</span>(<span class="hljs-params"></span>) public view virtual override returns (uint256) &#123;<br>        <span class="hljs-keyword">return</span> _allTokens.<span class="hljs-property">length</span>;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@dev</span> See &#123;IERC721Enumerable-tokenByIndex&#125;.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">tokenByIndex</span>(<span class="hljs-params">uint256 index</span>) public view virtual override returns (uint256) &#123;<br>        <span class="hljs-built_in">require</span>(index &lt; <span class="hljs-title class_">ERC721Enumerable</span>.<span class="hljs-title function_">totalSupply</span>(), <span class="hljs-string">&quot;ERC721Enumerable: global index out of bounds&quot;</span>);<br>        <span class="hljs-keyword">return</span> _allTokens[index];<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@dev</span> See &#123;ERC721-_beforeTokenTransfer&#125;.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">_beforeTokenTransfer</span>(<span class="hljs-params"></span><br><span class="hljs-params">        address <span class="hljs-keyword">from</span>,</span><br><span class="hljs-params">        address to,</span><br><span class="hljs-params">        uint256 firstTokenId,</span><br><span class="hljs-params">        uint256 batchSize</span><br><span class="hljs-params">    </span>) internal virtual override &#123;<br>        <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">_beforeTokenTransfer</span>(<span class="hljs-keyword">from</span>, to, firstTokenId, batchSize);<br><br>        <span class="hljs-keyword">if</span> (batchSize &gt; <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-comment">// Will only trigger during construction. Batch transferring (minting) is not available afterwards.</span><br>            <span class="hljs-title function_">revert</span>(<span class="hljs-string">&quot;ERC721Enumerable: consecutive transfers not supported&quot;</span>);<br>        &#125;<br><br>        uint256 tokenId = firstTokenId;<br><br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span> == <span class="hljs-title function_">address</span>(<span class="hljs-number">0</span>)) &#123;<br>            <span class="hljs-title function_">_addTokenToAllTokensEnumeration</span>(tokenId);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span> != to) &#123;<br>            <span class="hljs-title function_">_removeTokenFromOwnerEnumeration</span>(<span class="hljs-keyword">from</span>, tokenId);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (to == <span class="hljs-title function_">address</span>(<span class="hljs-number">0</span>)) &#123;<br>            <span class="hljs-title function_">_removeTokenFromAllTokensEnumeration</span>(tokenId);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (to != <span class="hljs-keyword">from</span>) &#123;<br>            <span class="hljs-title function_">_addTokenToOwnerEnumeration</span>(to, tokenId);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@dev</span> Private function to add a token to this extension&#x27;s ownership-tracking data structures.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> to address representing the new owner of the given token ID</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> tokenId uint256 ID of the token to be added to the tokens list of the given address</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">_addTokenToOwnerEnumeration</span>(<span class="hljs-params">address to, uint256 tokenId</span>) private &#123;<br>        uint256 length = <span class="hljs-title class_">ERC721</span>.<span class="hljs-title function_">balanceOf</span>(to);<br>        _ownedTokens[to][length] = tokenId;<br>        _ownedTokensIndex[tokenId] = length;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@dev</span> Private function to add a token to this extension&#x27;s token tracking data structures.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> tokenId uint256 ID of the token to be added to the tokens list</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">_addTokenToAllTokensEnumeration</span>(<span class="hljs-params">uint256 tokenId</span>) private &#123;<br>        _allTokensIndex[tokenId] = _allTokens.<span class="hljs-property">length</span>;<br>        _allTokens.<span class="hljs-title function_">push</span>(tokenId);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@dev</span> Private function to remove a token from this extension&#x27;s ownership-tracking data structures. Note that</span><br><span class="hljs-comment">     * while the token is not assigned a new owner, the `_ownedTokensIndex` mapping is _not_ updated: this allows for</span><br><span class="hljs-comment">     * gas optimizations e.g. when performing a transfer operation (avoiding double writes).</span><br><span class="hljs-comment">     * This has O(1) time complexity, but alters the order of the _ownedTokens array.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> from address representing the previous owner of the given token ID</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> tokenId uint256 ID of the token to be removed from the tokens list of the given address</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">_removeTokenFromOwnerEnumeration</span>(<span class="hljs-params">address <span class="hljs-keyword">from</span>, uint256 tokenId</span>) private &#123;<br>        <span class="hljs-comment">// To prevent a gap in from&#x27;s tokens array, we store the last token in the index of the token to delete, and</span><br>        <span class="hljs-comment">// then delete the last slot (swap and pop).</span><br><br>        uint256 lastTokenIndex = <span class="hljs-title class_">ERC721</span>.<span class="hljs-title function_">balanceOf</span>(<span class="hljs-keyword">from</span>) - <span class="hljs-number">1</span>;<br>        uint256 tokenIndex = _ownedTokensIndex[tokenId];<br><br>        <span class="hljs-comment">// When the token to delete is the last token, the swap operation is unnecessary</span><br>        <span class="hljs-keyword">if</span> (tokenIndex != lastTokenIndex) &#123;<br>            uint256 lastTokenId = _ownedTokens[<span class="hljs-keyword">from</span>][lastTokenIndex];<br><br>            _ownedTokens[<span class="hljs-keyword">from</span>][tokenIndex] = lastTokenId; <span class="hljs-comment">// Move the last token to the slot of the to-delete token</span><br>            _ownedTokensIndex[lastTokenId] = tokenIndex; <span class="hljs-comment">// Update the moved token&#x27;s index</span><br>        &#125;<br><br>        <span class="hljs-comment">// This also deletes the contents at the last position of the array</span><br>        <span class="hljs-keyword">delete</span> _ownedTokensIndex[tokenId];<br>        <span class="hljs-keyword">delete</span> _ownedTokens[<span class="hljs-keyword">from</span>][lastTokenIndex];<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@dev</span> Private function to remove a token from this extension&#x27;s token tracking data structures.</span><br><span class="hljs-comment">     * This has O(1) time complexity, but alters the order of the _allTokens array.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> tokenId uint256 ID of the token to be removed from the tokens list</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">_removeTokenFromAllTokensEnumeration</span>(<span class="hljs-params">uint256 tokenId</span>) private &#123;<br>        <span class="hljs-comment">// To prevent a gap in the tokens array, we store the last token in the index of the token to delete, and</span><br>        <span class="hljs-comment">// then delete the last slot (swap and pop).</span><br><br>        uint256 lastTokenIndex = _allTokens.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;<br>        uint256 tokenIndex = _allTokensIndex[tokenId];<br><br>        <span class="hljs-comment">// When the token to delete is the last token, the swap operation is unnecessary. However, since this occurs so</span><br>        <span class="hljs-comment">// rarely (when the last minted token is burnt) that we still do the swap here to avoid the gas cost of adding</span><br>        <span class="hljs-comment">// an &#x27;if&#x27; statement (like in _removeTokenFromOwnerEnumeration)</span><br>        uint256 lastTokenId = _allTokens[lastTokenIndex];<br><br>        _allTokens[tokenIndex] = lastTokenId; <span class="hljs-comment">// Move the last token to the slot of the to-delete token</span><br>        _allTokensIndex[lastTokenId] = tokenIndex; <span class="hljs-comment">// Update the moved token&#x27;s index</span><br><br>        <span class="hljs-comment">// This also deletes the contents at the last position of the array</span><br>        <span class="hljs-keyword">delete</span> _allTokensIndex[tokenId];<br>        _allTokens.<span class="hljs-title function_">pop</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>因为ERC721只能知道用户拥有多少NFT，并不能得到NFT的具体情况，所以oz写了这么一个用来记录NFT明细的库。<br>合约声明了一个叫_ownedTokens的mapping，可以按顺序查看到持币人拥有的token的ID；<br>合约声明了一个叫_ownedTokensIndex的mapping，记录了每个token在持币人所拥有token中的索引；<br>合约声明了一个叫_allTokens的uint256数组，它记录了合约铸造的所有token的Id，在用户调用mint函数时，会将铸造的token的Id push到这个数组中去；<br>合约声明了一个叫_allTokensIndex的mapping，它记录了每一个token在_allTokens数组中的索引。</p>
 <p>合约主要写了两个创新的函数，一个是tokenOfOwnerByIndex，这个函数让用户可以查看某个用户的持币列表中在index位置的token的Id是多少；另一个是tokenByIndex，这个函数让用户可以给出一个index来查看整个合约中现存的所有token在index位置上的token的id。</p>
 <p>_addTokenToOwnerEnumeration和_addTokenToAllTokensEnumeration函数都是在用户增加token的时候对数组进行更新，_removeTokenFromOwnerEnumeration和_removeTokenFromAllTokensEnumeration函数都是在用户失去币的时候对数组进行更新。</p>
 <p>总的来说，这个ERC721的扩展，让用户可以对所有的NFT进行遍历。</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ERC721Enumerable%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">#ERC721Enumerable学习记录</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ERC721Enumerable</div>
+      <div>https://mouke180.github.io/2022/11/29/ERC721Enumerable学习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Yuki</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/29/ERC721/" title="ERC721">
+                        <span class="hidden-mobile">ERC721</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
-    
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
 
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/ERC721Enumerable%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" rel="tag"># ERC721Enumerable学习记录</a>
-          </div>
 
-        
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/11/29/ERC721/" rel="prev" title="ERC721">
-                  <i class="fa fa-chevron-left"></i> ERC721
-                </a>
-            </div>
-            <div class="post-nav-item">
-            </div>
-          </div>
-    </footer>
-  </article>
+  </aside>
+
+
+    </div>
+  </div>
 </div>
 
 
 
 
 
+  
 
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
 </div>
+
+    
+
+    
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Yuki</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
+  
+  
+  
+  
+</div>
+
   </footer>
 
+  <!-- Scripts -->
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
-
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
 
   
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-haruto"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

